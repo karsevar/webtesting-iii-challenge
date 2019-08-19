@@ -36,13 +36,23 @@ describe('<Display /> Components tests', () => {
 
     it('should use green-led class if locked or closed is false', () => {
         const wrapper = render(<Display closed={false} locked={false} />)
-        const buttonList = wrapper.getAllByTestId('led green-led');
-        expect(buttonList.length).toBe(2);
+        // const buttonList = wrapper.getAllByTestId('led green-led');
+        // expect(buttonList.length).toBe(2);
+        const openDiv = wrapper.getByText(/open/i);
+        expect(openDiv.className).toBe('led green-led')
+
+        const lockedDiv = wrapper.getByText(/unlocked/i);
+        expect(lockedDiv.className).toBe('led green-led')
     })
 
     it('should use red-led class if locked or closed is true', () => {
         const wrapper = render(<Display closed={true} locked={true} />)
-        const buttonList = wrapper.getAllByTestId('led red-led');
-        expect(buttonList.length).toBe(2);
+        // const buttonList = wrapper.getAllByTestId('led red-led');
+        // expect(buttonList.length).toBe(2);
+        const openDiv = wrapper.getByText(/closed/i);
+        expect(openDiv.className).toBe('led red-led');
+
+        const lockedDiv = wrapper.getByText(/locked/i);
+        expect(lockedDiv.className).toBe('led red-led');
     })
 })
