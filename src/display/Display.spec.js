@@ -27,4 +27,10 @@ describe('<Display /> Components tests', () => {
         const {findByText} = render(<Display closed={false} locked={false} />) 
         expect(await findByText(/unlocked/i))
     })
+
+    it('should use red-led class if locked or closed is true', () => {
+        const wrapper = render(<Display closed={false} locked={false} />)
+        const buttonList = wrapper.getAllByTestId('led green-led');
+        expect(buttonList.length).toBe(2);
+    })
 })
